@@ -1,0 +1,14 @@
+{% extends 'students/base.html' %}
+{% block content %}
+
+<h3>{{ title }}</h3>
+
+<form method="post" novalidate>
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit" class="btn btn-success">Save</button>
+    <a href="{% url 'student_list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+
+{% endblock %}

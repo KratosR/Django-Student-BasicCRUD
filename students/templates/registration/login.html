@@ -1,0 +1,129 @@
+{% extends 'students/base.html' %}
+{% block content %}
+
+<style>
+/* Scoped styles so base.html is NOT affected */
+.neu-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #e0e5ec;
+}
+
+.neu-card {
+  background: #e0e5ec;
+  border-radius: 25px;
+  box-shadow: 10px 10px 20px #a3b1c6,
+              -10px -10px 20px #ffffff;
+  padding: 45px 35px;
+  width: 340px;
+  text-align: center;
+}
+
+.neu-profile {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: url('https://picsum.photos/200');
+  background-size: cover;
+  box-shadow: inset 6px 6px 10px rgba(163,177,198,.5),
+              inset -6px -6px 10px rgba(255,255,255,.5);
+}
+
+.neu-card h3 {
+  font-size: 1.3rem;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.neu-sub {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 25px;
+}
+
+.neu-field {
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.neu-field input {
+  width: 100%;
+  padding: 12px 45px;
+  border: none;
+  border-radius: 15px;
+  background: #e0e5ec;
+  box-shadow: inset 6px 6px 10px #a3b1c6,
+              inset -6px -6px 10px #ffffff;
+  outline: none;
+}
+
+.neu-field span {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.neu-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 20px;
+  background: #40a9c3;
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 5px 5px 15px #a3b1c6,
+              -5px -5px 15px #ffffff;
+  cursor: pointer;
+}
+
+.neu-btn:hover {
+  background: #3a97af;
+}
+
+.neu-error {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+}
+</style>
+
+<div class="neu-wrapper">
+
+  <div class="neu-card">
+
+    <div class="neu-profile"></div>
+
+    <h3>🔐 Login</h3>
+    <div class="neu-sub">Made easy!</div>
+
+    <form method="post" novalidate>
+      {% csrf_token %}
+
+      {% for field in form %}
+        <div class="neu-field">
+          <span>
+            {% if field.name == "username" %}👤{% else %}🔒{% endif %}
+          </span>
+
+          {{ field }}
+
+          {% if field.errors %}
+            <div class="neu-error">
+              {{ field.errors|striptags }}
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+
+      <button type="submit" class="neu-btn">Login</button>
+    </form>
+
+  </div>
+
+</div>
+
+{% endblock %}
