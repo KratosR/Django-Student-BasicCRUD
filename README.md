@@ -1,38 +1,31 @@
-# Django Project Setup
 
----
+## Deployment
 
-# 1. Clone the repository
-
-```bash
-git clone <your-repo-url>
-cd <your-project-folder>
-
-# 2. Create & Activate the virtual environment
+To deploy this project run
 
 ```bash
-python -m venv env
-source env/bin/activate
-
-# 3. Install dependencies
+  git clone <your-repo-url>
+  cd <your-project-folder>
+```
+```bash
+  python -m venv env
+  source env/bin/activate
+```
 
 ```bash
-pip install -r requirements.txt
-
-# 4. Apply migrations
-
-```bash
-python manage.py makemigrations
-python manage.py migrate
-
-# 5. Create a superuser (admin)
+  pip install -r requirements.txt
+```
 
 ```bash
-python manage.py createsuperuser
-
-# 6. Run the development server
+  python manage.py makemigrations students
+  python manage.py migrate students
+  python manage.py migrate
+```
 
 ```bash
-python manage.py runserver
+  python manage.py createsuperuser
+```
 
----
+```bash
+  python manage.py runserver
+```
